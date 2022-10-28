@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<main class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4 mt-5">
+            <div class="card card-body">
+                <form method="POST" >
+                    <h1 class="text-center">
+                        Tareas
+                    </h1>
+                    <h3>{{tarea.titulo}}</h3>
+                    {{error}}
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button class="btn btn-dark btn-sm">
+                        Actualizar
+                    </button>
+                </form>
+
+                <form action="{% url 'completo' tarea.id %}" method="POST">
+                    {% csrf_token %}
+                    <button class="btn btn-dark btn-sm offset-md-0 mt-2">
+                        completo
+                    </button>
+                </form>
+                
+                <form action="{% url 'borrar' tarea.id %}" method="POST">
+                    {% csrf_token %}
+                    <button class="btn btn-dark btn-sm offset-md-0 mt-2">
+                        descartar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+
+    
+
+{% endblock %}
+
